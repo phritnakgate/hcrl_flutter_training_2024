@@ -27,16 +27,32 @@ class _QuizScreenState extends State<QuizScreen> {
             context: context,
             builder: (context) {
               return AlertDialog(
-                title: const Text("Quiz Finished"),
+                title: Text("Quiz Finished !",
+                    textAlign: TextAlign.center,
+                    style: GoogleFonts.prompt(
+                        fontSize: 20, fontWeight: FontWeight.bold)),
                 content: Text(
-                    "Your score is $score/${widget.quiz['problems'].length}"),
+                    "Your score is $score/${widget.quiz['problems'].length}",
+                    textAlign: TextAlign.center,
+                    style: GoogleFonts.prompt(fontSize: 16)),
                 actions: [
                   TextButton(
                       onPressed: () {
                         Navigator.pop(context);
                         Navigator.pop(context);
                       },
-                      child: const Text("OK"))
+                      child:
+                          Text("OK", style: GoogleFonts.prompt(fontSize: 16))),
+                  TextButton(
+                      onPressed: () {
+                        Navigator.pop(context);
+                        setState(() {
+                          currentQuestion = 0;
+                          score = 0;
+                        });
+                      },
+                      child: Text("Retry",
+                          style: GoogleFonts.prompt(fontSize: 16)))
                 ],
               );
             });
